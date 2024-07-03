@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Search</title>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/scroller/2.0.5/css/scroller.dataTables.min.css">
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/scroller/2.0.5/js/dataTables.scroller.min.js"></script>
+</head>
+<body>
+  <h1>Employee Search</h1>
+  <form id="searchForm">
+    <label for="names">Names (one per line):</label><br>
+    <textarea id="names" rows="10" cols="30" placeholder="Enter names, one per line"></textarea><br><br>
+
+    <label for="emails">Emails (one per line):</label><br>
+    <textarea id="emails" rows="10" cols="30" placeholder="Enter emails, one per line"></textarea><br><br>
+
+    <label for="exceptEmails">Except Emails (one per line):</label><br>
+    <textarea id="exceptEmails" rows="10" cols="30" placeholder="Enter emails to exclude, one per line"></textarea><br><br>
+
+    <label for="jobTitleLevels">Job Title Levels:</label><br>
+    <select id="jobTitleLevels" name="jobTitleLevels" multiple="multiple" style="width: 300px;">
+      <option value="Senior">Senior</option>
+      <option value="Manager">Manager</option>
+      <option value="VP">VP</option>
+    </select><br><br>
+    
+    <label for="jobtitles">Job Titles (one per line):</label><br>
+    <textarea id="jobtitles" rows="10" cols="30" placeholder="Enter job titles, one per line"></textarea><br><br>
+        
+    <label for="job_title_role">Job Role (one per line):</label><br>
+    <textarea id="job_title_role" rows="10" cols="30" placeholder="Enter job role, one per line"></textarea><br><br>
+        
+    <label for="job_title_sub_role">Job Sub Role (one per line):</label><br>
+    <textarea id="job_title_sub_role" rows="10" cols="30" placeholder="Enter job sub role, one per line"></textarea><br><br>
+        
+    <label for="job_company_name">Company Names (one per line):</label><br>
+    <textarea id="job_company_name" rows="10" cols="30" placeholder="Enter company names, one per line"></textarea><br><br>
+    
+	 <label for="exclude_job_company_name">Exclude list of Companies :</label><br>
+    <textarea id="exclude_job_company_name" rows="10" cols="30" placeholder="Exclude list of Companies, one per line"></textarea><br><br>
+	
+	<label for="job_company_website">Include list of Domain of Companies :</label><br>
+    <textarea id="job_company_website" rows="10" cols="30" placeholder="Enter company names, one per line"></textarea><br><br>	
+	
+	<label for="exclude_job_company_website">Exclude  list of Domain of Companies :</label><br>
+    <textarea id="exclude_job_company_website" rows="10" cols="30" placeholder="Enter company names, one per line"></textarea><br><br>
+	
+	<label for="mobile_phone">Mobile No.</label><br>
+	 <textarea id="mobile_phone" rows="10" cols="30" placeholder="Enter Mobile No, one per line"></textarea><br><br>
+	
+	<label for="phone_numbers">  Office no. :  </label><br>
+	 <textarea id="phone_numbers" rows="10" cols="30" placeholder="Enter Office Phone No., one per line"></textarea><br><br>
+						 
+                     
+	
+	<label for="countries">Location :</label><br>
+    <select id="countries" name="countries" multiple="multiple" style="width: 300px;">
+														<option value="afghanistan">afghanistan</option>
+																		 <option value="albania">albania</option>
+																		 <option value="algeria">algeria</option>
+																		 <option value="american samoa">american samoa</option>
+																		 <option value="andorra">andorra</option>
+																		 <option value="angola">angola</option>
+																		 <option value="anguilla">anguilla</option>
+																		 <option value="antarctica">antarctica</option>
+																		 <option value="antigua and barbuda">antigua and barbuda</option>
+																		 <option value="argentina">argentina</option>
+																		 <option value="armenia">armenia</option>
+																		 <option value="aruba">aruba</option>
+																		 <option value="australia">australia</option>
+																		 <option value="austria">austria</option>
+																		 <option value="azerbaijan">azerbaijan</option>
+																		 <option value="bahamas">bahamas</option>
+																		 <option value="bahrain">bahrain</option>
+																		 <option value="bangladesh">bangladesh</option>
+																		 <option value="barbados">barbados</option>
+																		 <option value="belarus">belarus</option>
+																		 <option value="belgium">belgium</option>
+																		 <option value="belize">belize</option>
+																		 <option value="benin">benin</option>
+																		 <option value="bermuda">bermuda</option>
+																		 <option value="bhutan">bhutan</option>
+																		 <option value="bolivia">bolivia</option>
+																		 <option value="bosnia and herzegovina">bosnia and herzegovina</option>
+																		 <option value="botswana">botswana</option>
+																		 <option value="bouvet island">bouvet island</option>
+																		 <option value="brazil">brazil</option>
+																		 <option value="british indian ocean territory">british indian ocean territory</option>
+																		 <option value="british virgin islands">british virgin islands</option>
+																		 <option value="brunei">brunei</option>
+																		 <option value="bulgaria">bulgaria</option>
+																		 <option value="burkina faso">burkina faso</option>
+																		 <option value="burundi">burundi</option>
+																		 <option value="c?te d" ivoire'="">c?te d'ivoire</option>
+																		 <option value="cabo verde">cabo verde</option>
+																		 <option value="cambodia">cambodia</option>
+																		 <option value="cameroon">cameroon</option>
+																		 <option value="canada">canada</option>
+																		 <option value="cape verde">cape verde</option>
+																		 <option value="cayman islands">cayman islands</option>
+																		 <option value="central african republic">central african republic</option>
+																		 <option value="chad">chad</option>
+																		 <option value="chile">chile</option>
+																		 <option value="china">china</option>
+																		 <option value="christmas island">christmas island</option>
+																		 <option value="colombia">colombia</option>
+																		 <option value="comoros">comoros</option>
+																		 <option value="congo">congo</option>
+																		 <option value="cook islands">cook islands</option>
+																		 <option value="costa rica">costa rica</option>
+																		 <option value="croatia">croatia</option>
+																		 <option value="cuba">cuba</option>
+																		 <option value="cyprus">cyprus</option>
+																		 <option value="czechia">czechia</option>
+																		 <option value="czechia">czechia</option>
+																		 <option value="democratic republic of the congo">democratic republic of the congo</option>
+																		 <option value="denmark">denmark</option>
+																		 <option value="djibouti">djibouti</option>
+																		 <option value="dominica">dominica</option>
+																		 <option value="dominican republic">dominican republic</option>
+																		 <option value="ecuador">ecuador</option>
+																		 <option value="egypt">egypt</option>
+																		 <option value="el salvador">el salvador</option>
+																		 <option value="equatorial guinea">equatorial guinea</option>
+																		 <option value="eritrea">eritrea</option>
+																		 <option value="estonia">estonia</option>
+																		 <option value="eswatini">eswatini</option>
+																		 <option value="ethiopia">ethiopia</option>
+																		 <option value="faroe islands">faroe islands</option>
+																		 <option value="fiji">fiji</option>
+																		 <option value="finland">finland</option>
+																		 <option value="france">france</option>
+																		 <option value="french guiana">french guiana</option>
+																		 <option value="french polynesia">french polynesia</option>
+																		 <option value="gabon">gabon</option>
+																		 <option value="gambia">gambia</option>
+																		 <option value="georgia">georgia</option>
+																		 <option value="germany">germany</option>
+																		 <option value="ghana">ghana</option>
+																		 <option value="gibraltar">gibraltar</option>
+																		 <option value="greece">greece</option>
+																		 <option value="greenland">greenland</option>
+																		 <option value="grenada">grenada</option>
+																		 <option value="guadeloupe">guadeloupe</option>
+																		 <option value="guam">guam</option>
+																		 <option value="guatemala">guatemala</option>
+																		 <option value="guernsey">guernsey</option>
+																		 <option value="guinea">guinea</option>
+																		 <option value="guinea-bissau">guinea-bissau</option>
+																		 <option value="guyana">guyana</option>
+																		 <option value="haiti">haiti</option>
+																		 <option value="holy see">holy see</option>
+																		 <option value="honduras">honduras</option>
+																		 <option value="hong kong">hong kong</option>
+																		 <option value="hungary">hungary</option>
+																		 <option value="iceland">iceland</option>
+																		 <option value="india">india</option>
+																		 <option value="indonesia">indonesia</option>
+																		 <option value="iran">iran</option>
+																		 <option value="iraq">iraq</option>
+																		 <option value="ireland">ireland</option>
+																		 <option value="isle of man">isle of man</option>
+																		 <option value="israel">israel</option>
+																		 <option value="italy">italy</option>
+																		 <option value="jamaica">jamaica</option>
+																		 <option value="japan">japan</option>
+																		 <option value="jersey">jersey</option>
+																		 <option value="jordan">jordan</option>
+																		 <option value="kazakhstan">kazakhstan</option>
+																		 <option value="kenya">kenya</option>
+																		 <option value="kiribati">kiribati</option>
+																		 <option value="kosovo">kosovo</option>
+																		 <option value="kuwait">kuwait</option>
+																		 <option value="kyrgyzstan">kyrgyzstan</option>
+																		 <option value="laos">laos</option>
+																		 <option value="latvia">latvia</option>
+																		 <option value="lebanon">lebanon</option>
+																		 <option value="lesotho">lesotho</option>
+																		 <option value="liberia">liberia</option>
+																		 <option value="libya">libya</option>
+																		 <option value="liechtenstein">liechtenstein</option>
+																		 <option value="lithuania">lithuania</option>
+																		 <option value="luxembourg">luxembourg</option>
+																		 <option value="macau">macau</option>
+																		 <option value="macedonia">macedonia</option>
+																		 <option value="madagascar">madagascar</option>
+																		 <option value="malawi">malawi</option>
+																		 <option value="malaysia">malaysia</option>
+																		 <option value="maldives">maldives</option>
+																		 <option value="mali">mali</option>
+																		 <option value="malta">malta</option>
+																		 <option value="marshall islands">marshall islands</option>
+																		 <option value="martinique">martinique</option>
+																		 <option value="mauritania">mauritania</option>
+																		 <option value="mauritius">mauritius</option>
+																		 <option value="mayotte">mayotte</option>
+																		 <option value="mexico">mexico</option>
+																		 <option value="micronesia">micronesia</option>
+																		 <option value="moldova">moldova</option>
+																		 <option value="monaco">monaco</option>
+																		 <option value="mongolia">mongolia</option>
+																		 <option value="montenegro">montenegro</option>
+																		 <option value="morocco">morocco</option>
+																		 <option value="mozambique">mozambique</option>
+																		 <option value="myanmar">myanmar</option>
+																		 <option value="namibia">namibia</option>
+																		 <option value="nauru">nauru</option>
+																		 <option value="nepal">nepal</option>
+																		 <option value="netherlands">netherlands</option>
+																		 <option value="netherlands antilles">netherlands antilles</option>
+																		 <option value="new caledonia">new caledonia</option>
+																		 <option value="new zealand">new zealand</option>
+																		 <option value="nicaragua">nicaragua</option>
+																		 <option value="niger">niger</option>
+																		 <option value="nigeria">nigeria</option>
+																		 <option value="north korea">north korea</option>
+																		 <option value="north macedonia">north macedonia</option>
+																		 <option value="northern mariana islands">northern mariana islands</option>
+																		 <option value="norway">norway</option>
+																		 <option value="oman">oman</option>
+																		 <option value="pakistan">pakistan</option>
+																		 <option value="palau">palau</option>
+																		 <option value="palestine">palestine</option>
+																		 <option value="palestine state">palestine state</option>
+																		 <option value="panama">panama</option>
+																		 <option value="papua new guinea">papua new guinea</option>
+																		 <option value="paraguay">paraguay</option>
+																		 <option value="peru">peru</option>
+																		 <option value="philippines">philippines</option>
+																		 <option value="poland">poland</option>
+																		 <option value="portugal">portugal</option>
+																		 <option value="puerto rico">puerto rico</option>
+																		 <option value="qatar">qatar</option>
+																		 <option value="republic of the congo">republic of the congo</option>
+																		 <option value="romania">romania</option>
+																		 <option value="russia">russia</option>
+																		 <option value="rwanda">rwanda</option>
+																		 <option value="saint helena">saint helena</option>
+																		 <option value="saint kitts and nevis">saint kitts and nevis</option>
+																		 <option value="saint lucia">saint lucia</option>
+																		 <option value="saint pierre and miquelon">saint pierre and miquelon</option>
+																		 <option value="saint vincent and the grenadines">saint vincent and the grenadines</option>
+																		 <option value="samoa">samoa</option>
+																		 <option value="san marino">san marino</option>
+																		 <option value="sao tome and principe">sao tome and principe</option>
+																		 <option value="saudi arabia">saudi arabia</option>
+																		 <option value="senegal">senegal</option>
+																		 <option value="serbia">serbia</option>
+																		 <option value="seychelles">seychelles</option>
+																		 <option value="singapore">singapore</option>
+																		 <option value="slovakia">slovakia</option>
+																		 <option value="slovenia">slovenia</option>
+																		 <option value="solomon islands">solomon islands</option>
+																		 <option value="somalia">somalia</option>
+																		 <option value="south africa">south africa</option>
+																		 <option value="south korea">south korea</option>
+																		 <option value="south sudan">south sudan</option>
+																		 <option value="spain">spain</option>
+																		 <option value="sri lanka">sri lanka</option>
+																		 <option value="sudan">sudan</option>
+																		 <option value="suriname">suriname</option>
+																		 <option value="svalbard and jan mayen">svalbard and jan mayen</option>
+																		 <option value="swaziland">swaziland</option>
+																		 <option value="sweden">sweden</option>
+																		 <option value="switzerland">switzerland</option>
+																		 <option value="syria">syria</option>
+																		 <option value="taiwan">taiwan</option>
+																		 <option value="tajikistan">tajikistan</option>
+																		 <option value="tanzania">tanzania</option>
+																		 <option value="thailand">thailand</option>
+																		 <option value="timor-leste">timor-leste</option>
+																		 <option value="togo">togo</option>
+																		 <option value="tonga">tonga</option>
+																		 <option value="trinidad and tobago">trinidad and tobago</option>
+																		 <option value="tunisia">tunisia</option>
+																		 <option value="turkey">turkey</option>
+																		 <option value="turkmenistan">turkmenistan</option>
+																		 <option value="turks and caicos islands">turks and caicos islands</option>
+																		 <option value="tuvalu">tuvalu</option>
+																		 <option value="u.s. virgin islands">u.s. virgin islands</option>
+																		 <option value="uganda">uganda</option>
+																		 <option value="ukraine">ukraine</option>
+																		 <option value="united arab emirates">united arab emirates</option>
+																		 <option value="united kingdom">united kingdom</option>
+																		 <option value="united states">united states</option>
+																		 <option value="uruguay">uruguay</option>
+																		 <option value="uzbekistan">uzbekistan</option>
+																		 <option value="vanuatu">vanuatu</option>
+																		 <option value="vatican city">vatican city</option>
+																		 <option value="venezuela">venezuela</option>
+																		 <option value="vietnam">vietnam</option>
+																		 <option value="yemen">yemen</option>
+																		 <option value="zambia">zambia</option>
+																		 <option value="zimbabwe">zimbabwe</option>
+									                                <option value="EMEA">EMEA</option>
+                                <option value="NA">NA</option>
+                                <option value="LATAM">LATAM</option>
+                                <option value="APAC">APAC</option>
+    </select><br><br>
+	
+	
+	<label for="job_company_size">Employees:</label><br>
+	<select  id="job_company_size" name="job_company_size[]"  multiple="multiple" data-placeholder="--Select--">
+
+   <option value="">--Select--</option>
+                               									 <option value='Self-employed'  >Self-employed</option>
+																		 <option value='1-10'  >1-10</option>
+																		 <option value='11-50'  >11-50</option>
+																		 <option value='51-200'  >51-200</option>
+																		 <option value='201-500'  >201-500</option>
+																		 <option value='501-1000'  >501-1000</option>
+																		 <option value='1001-5000'  >1001-5000</option>
+																		 <option value='5001-10,000'  >5001-10,000</option>
+																		 <option value='10,000+'  >10,000+</option>
+									                            </select>
+	
+	
+	<br><br>
+	
+		
+	<label for="job_company_industry">Industry & Keywords:</label><br>
+	<select  id="job_company_industry" name="job_company_industry[]"  multiple="multiple" data-placeholder="--Select--">
+
+   <option value="">--Select--</option>
+                               									 <option value='Accounting' >Accounting</option>
+																		 <option value='Airlines/Aviation' >Airlines/Aviation</option>
+																		 <option value='Animation' >Animation</option>
+																		 <option value='Apparel & Fashion' >Apparel & Fashion</option>
+																		 <option value='Architecture & Planning' >Architecture & Planning</option>
+																		 <option value='Automotive' >Automotive</option>
+																	
+																		 <option value='Aviation & Aerospace' >Aviation & Aerospace</option>
+																		 <option value='Banking' >Banking</option>
+									                            </select>
+	
+	
+	<br><br>
+	
+		
+		
+	<label for="job_company_type">	Company Type:</label><br>
+	<select  id="job_company_type" name="job_company_type[]"  multiple="multiple" data-placeholder="--Select--">
+
+   <option value="">--Select--</option>
+                               									 <option value='Public Company' >Public Company</option>
+																		 <option value='Privately  Held' >Privately  Held</option>
+																		 
+									                            </select>
+	
+	
+	<br><br>
+	
+	
+	<label for="linkedin_connections"> Connections </label><br>
+	 <input type="text"  placeholder="linkedin_connections" name="linkedin_connections" id="linkedin_connections" value="">
+	<br><br>
+	
+		
+	<label for="job_start_date"> Years of Job Started :  </label><br>
+	 <input type="text"  placeholder="job_start_date" name="job_start_date" id="job_start_date" value="">
+	<br><br>
+	
+
+	<label for="inferred_years_experience"> Years of experience : </label><br>
+	 <input type="text"  placeholder="inferred_years_experience" name="inferred_years_experience" id="inferred_years_experience" value="">
+	<br><br>
+	
+	
+	
+	<label for="job_company_founded">Company Founded year: </label><br>
+	 <input type="text"  placeholder="job_company_founded" name="job_company_founded" id="job_company_founded" value="">
+	<br><br>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+   
+    <button type="submit">Search</button>
+	 </form>
+	<!-- datatbale --> 
+	  <button id="export-btn">Export to Excel</button>
+
+
+ 
+  <div id="searchResults"></div>
+	<!-- datatbale ends --> 
+	
+	
+<table id="example" class="display">
+    <thead>
+      <tr>
+
+        <th>Name</th>
+        <th>Company</th>
+        <th>Status</th>
+        <th>Location</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+	<!-- datatbale ends --> 
+	
+	
+
+  <script>
+$(document).ready(function () {
+    $('#jobTitleLevels').select2();
+    $('#countries').select2();
+    $('#job_company_size').select2();
+    $('#job_company_industry').select2();
+    $('#job_company_type').select2();
+	$('#export-btn').on('click', function() {
+        window.location.href = '/download';
+      });
+
+    $('#searchForm').on('submit', async function (e) {
+        e.preventDefault();
+
+        const names = $('#names').val();
+        const emails = $('#emails').val();
+        const exceptEmails = $('#exceptEmails').val();
+        const jobTitleLevels = $('#jobTitleLevels').val();
+        const jobtitles = $('#jobtitles').val();
+        const job_title_role = $('#job_title_role').val();
+        const job_title_sub_role = $('#job_title_sub_role').val();
+        const job_company_name = $('#job_company_name').val();
+        const exclude_job_company_name = $('#exclude_job_company_name').val();
+        const job_company_website = $('#job_company_website').val();
+        const exclude_job_company_website = $('#exclude_job_company_website').val();
+        const mobile_phone = $('#mobile_phone').val();
+        const phone_numbers = $('#phone_numbers').val();
+        const countries = $('#countries').val();
+        const job_company_size = $('#job_company_size').val();
+        const job_company_industry = $('#job_company_industry').val();
+        const job_company_type = $('#job_company_type').val();
+        const linkedin_connections = $('#linkedin_connections').val();
+        const job_start_date = $('#job_start_date').val();
+        const inferred_years_experience = $('#inferred_years_experience').val();
+        const job_company_founded = $('#job_company_founded').val();
+
+
+
+ try {
+            const response = await fetch('/search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    names,
+                    emails,
+                    exceptEmails,
+                    jobTitleLevels,
+                    jobtitles,
+                    job_title_role,
+                    job_title_sub_role,
+                    job_company_name,
+                    exclude_job_company_name,
+                    job_company_website,
+                    exclude_job_company_website,
+                    mobile_phone,
+                    phone_numbers,
+                    countries,
+                    job_company_size,
+                    job_company_industry,
+                    job_company_type,
+                    linkedin_connections,
+                    job_start_date,
+                    inferred_years_experience,
+                    job_company_founded,
+                }),
+            });
+
+            const data = await response.json();
+            //displayResults(data);
+			dado();
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+
+
+});
+
+
+
+
+  
+  function dado() {
+        $('#example').DataTable().destroy();
+
+//datatable starts
+ $('#example').DataTable({
+        serverSide: true,
+        processing: true,
+        ajax: {
+          url: '/data',
+          type: 'GET'
+        },
+        columns: [
+          { data: 'full_name' },
+          { data: 'first_name' },
+          { data: 'middle_name' },
+          { data: 'countries' }
+        ],
+        scrollY: 200,  // Height of the scroll area
+        scroller: true // Enable scroller
+      }); 
+//datatable ends   
+  
+return 
+
+}
+  </script>
+</body>
+</html>
