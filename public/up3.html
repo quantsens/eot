@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chunked File Upload</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/resumable.js/1.1.0/resumable.min.js"></script>
+</head>
+<body>
+  <input type="file" id="uploadFile" />
+
+  <script>
+    const resumable = new Resumable({
+      target: '/upload',
+      chunkSize: 1 * 1024 * 1024, // 1MB chunks
+      simultaneousUploads: 3,
+      testChunks: false,
+      throttleProgressCallbacks: 1
+    });
+
+    resumable.assignBrowse(document.getElementById('uploadFile'));
+
+    resumable.on('fileAdded', (file) => {
+      resumable.upload();
+    });
+
+    resumable.on('fileSuccess', (file, message) => {
+      console.log('File uploaded successfully:', message);
+	  
+	  
+	  
+	  
+
+    // All chunks are uploaded, make an additional request to notify the server
+   fetch('/allclusteruploaded', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        identifier: file.uniqueIdentifier,
+        filename: file.fileName,
+      }),
+    }).then(response => {
+      if (response.ok) {
+        console.log('dan dana dan dan');
+      } else {
+        console.error('Error notifying server about all chunks uploaded');
+      }
+    }).catch(error => {
+      console.error('Error:', error);
+    });
+ 
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+    });
+
+    resumable.on('fileError', (file, message) => {
+      console.error('File upload error:', message);
+    });
+
+    resumable.on('fileProgress', (file) => {
+      console.log('File progress:', Math.floor(file.progress() * 100) + '%');
+    });
+  </script>
+</body>
+</html>
